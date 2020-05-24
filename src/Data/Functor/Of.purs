@@ -3,6 +3,7 @@ module Data.Functor.Of where
 import Prelude
 
 import Data.Bifunctor (class Bifunctor)
+import Data.Foldable (class Foldable)
 import Data.Generic.Rep (class Generic)
 
 data Of a b = Of a b
@@ -36,3 +37,8 @@ instance monadOf :: (Monoid a) => Monad (Of a)
 
 derive instance eqOf :: (Eq a, Eq b) => Eq (Of a b)
 derive instance ordOf :: (Ord a, Ord b) => Ord (Of a b) 
+
+instance foldableOf :: Foldable (Of a) where 
+  foldr f z (_ :> x) = f x z
+  foldl f z (_ :> x) = f z x
+  foldMap f (_ :> x) = f x
