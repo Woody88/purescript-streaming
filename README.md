@@ -1,2 +1,2 @@
 # purescript-streaming
-A general streaming library 
+A general streaming library (port of the haskell version)
